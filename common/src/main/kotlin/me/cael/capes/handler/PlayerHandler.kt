@@ -87,8 +87,6 @@ class PlayerHandler(var profile: GameProfile) {
         val connection = connection(capeURL)
 
         return when(capeType) {
-            CapeType.WYNNTILS -> setWynntilsCape(connection)
-            CapeType.MINECRAFTCAPES -> setMCMCape(connection)
             else -> setStandardCape(connection)
         }.also { if (it) this.capeType = capeType}
     }

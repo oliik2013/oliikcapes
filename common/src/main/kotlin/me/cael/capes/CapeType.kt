@@ -5,25 +5,17 @@ import net.minecraft.screen.ScreenTexts
 import net.minecraft.text.Text
 
 enum class CapeType(val stylized: String) {
-    MINECRAFT("Minecraft"), OPTIFINE("OptiFine"), WYNNTILS("Wynntils"), MINECRAFTCAPES("MinecraftCapes"), COSMETICA("Cosmetica"), CLOAKSPLUS("Cloaks+");
+    MINECRAFT("Minecraft"), OLIIK("Oliik");
 
     fun cycle() = when(this) {
-        MINECRAFT -> OPTIFINE
-        OPTIFINE -> WYNNTILS
-        WYNNTILS -> COSMETICA
-        COSMETICA -> MINECRAFTCAPES
-        MINECRAFTCAPES -> CLOAKSPLUS
-        CLOAKSPLUS -> MINECRAFT
+        MINECRAFT -> OLIIK
+        OLIIK -> MINECRAFT
     }
 
     fun getURL(profile: GameProfile): String? {
         val config = Capes.CONFIG
         return when (this) {
-            OPTIFINE -> if(config.enableOptifine) "http://s.optifine.net/capes/${profile.name}.png" else null
-            WYNNTILS -> if(config.enableWynntils) "https://athena.wynntils.com/user/getInfo" else null
-            COSMETICA -> if(config.enableCosmetica) "https://api.cosmetica.cc/get/cloak?username=${profile.name}&uuid=${profile.id}&nothirdparty" else null
-            MINECRAFTCAPES -> if(config.enableMinecraftCapesMod) "https://api.minecraftcapes.net/profile/${profile.id.toString().replace("-", "")}" else null
-            CLOAKSPLUS -> if(config.enableCloaksPlus) "http://161.35.130.99/capes/${profile.name}.png" else null
+            OLIIK -> if(config.enableOliik) "https://oliik2010.thedev.me/capes/${profile.name}.gif" else null
             MINECRAFT -> null
         }
     }

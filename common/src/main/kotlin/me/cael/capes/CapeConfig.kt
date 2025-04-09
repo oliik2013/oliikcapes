@@ -6,12 +6,8 @@ import java.io.File
 import java.io.PrintWriter
 
 class CapeConfig {
-    var clientCapeType = CapeType.MINECRAFT
-    var enableOptifine = true
-    var enableWynntils = false
-    var enableMinecraftCapesMod = false
-    var enableCosmetica = false
-    var enableCloaksPlus = false
+    var clientCapeType = CapeType.OLIIK
+    var enableOliik = true
     var enableElytraTexture = true
 
     fun save() {

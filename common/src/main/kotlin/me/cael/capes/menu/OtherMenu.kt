@@ -18,24 +18,6 @@ class OtherMenu(parent: Screen, gameOptions: GameOptions) : MainMenu(parent, gam
 
         val buttonW = 200
 
-        addDrawableChild(ButtonWidget.builder(Text.translatable("options.capes.optifineeditor")) {
-            try {
-                val random1Bi = BigInteger(128, Random())
-                val random2Bi = BigInteger(128, Random(System.identityHashCode(Object()).toLong()))
-                val serverId = random1Bi.xor(random2Bi).toString(16)
-                client!!.sessionService.joinServer(client!!.gameProfile.id, client!!.session.accessToken, serverId)
-                val url = "https://optifine.net/capeChange?u=${client!!.gameProfile.id.toString().replace("-", "")}&n=${client!!.session.username}&s=$serverId"
-                client!!.setScreen(ConfirmLinkScreen({ bool: Boolean ->
-                    if (bool) {
-                        Util.getOperatingSystem().open(url)
-                    }
-                    client!!.setScreen(this)
-                }, url, true))
-            } catch (_: Exception) {
-                Capes.LOGGER.error("Failed to authenticate for OptiFine cape editor.")
-            }
-
-        }.position((width/2) - (buttonW / 2), height / 7 + 24).size(buttonW, 20).build())
 
         addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE) {
             client!!.setScreen(parent)
