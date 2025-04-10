@@ -1,6 +1,8 @@
 name: Release Fabric
 
-on: [workflow_dispatch]
+on:
+  issues:
+    types: [opened, reopened]
 
 jobs:
   releaseFabric:
