@@ -29,11 +29,11 @@ jobs:
       
       - run: ./gradlew :fabric:build
 
-      - run: dir build
+      - run: dir fabric
 
       - name: hi
         uses: actions/upload-artifact@v4
         with:
            name: my-artifact
-           path: build/libs/
+           path: fabric/build/libs/
            
