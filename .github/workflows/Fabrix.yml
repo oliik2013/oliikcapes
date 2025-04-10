@@ -9,11 +9,13 @@ jobs:
 
     runs-on: windows-latest
 
-    container:
-      image: openjdk:21-jdk
-      options: --user root
+    
 
     steps:
+      - name: validate gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+    
       - name: setup jdk
         uses: actions/setup-java@v4
         with:
