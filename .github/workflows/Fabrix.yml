@@ -13,7 +13,14 @@ jobs:
       options: --user root
 
     steps:
-      - uses: actions/checkout@v2.2.0
+      - uses: actions/checkout@v4
       - run: |
           chmod +x ./gradlew
           ./gradlew :fabric:build --stacktrace
+
+      
+      - uses: actions/upload-artifact@v4
+      - with:
+           name: my-artifact
+           path: build/libs/*.jar
+           retention-days: 365
