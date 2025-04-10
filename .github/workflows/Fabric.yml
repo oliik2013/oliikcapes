@@ -27,13 +27,13 @@ jobs:
           distribution: 'zulu'
     
       
-      - run: |
-          chmod +x ./gradlew
-          ./gradlew :fabric:build --stacktrace
+      - run: ./gradlew :fabric:build
+
+      - run: dir
 
       - name: hi
         uses: actions/upload-artifact@v4
         with:
            name: my-artifact
            path: build/libs/
-           retention-days: 365
+           
