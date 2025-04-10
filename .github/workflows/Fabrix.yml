@@ -1,7 +1,6 @@
 name: Release Fabric
 
-on:
-  push:
+on: workflow_dispatch
     
 
 jobs:
