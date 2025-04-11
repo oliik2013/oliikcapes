@@ -73,6 +73,8 @@ repositories {
         url = uri("https://maven.terraformersmc.com/")
     }
     mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
 }
 
 dependencies {
@@ -83,8 +85,8 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project["fabric_version"]}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${project["fabric_kotlin_version"]}")
 
-    include("com.github.Draylar.omega-config:omega-config-base:${project["omega_config_version"]}")
-    modImplementation("com.github.Draylar.omega-config:omega-config-base:${project["omega_config_version"]}")
+    include("com.github.Draylar:omega-config:${project["omega_config_version"]}")
+    modImplementation("com.github.Draylar:omega-config:${project["omega_config_version"]}")
 
     implementation("com.github.LlamaLad7:MixinExtras:${project["mixinextras_version"]}")
     include("com.github.LlamaLad7:MixinExtras:${project["mixinextras_version"]}")
