@@ -86,12 +86,16 @@ dependencies {
     include("com.github.Draylar.omega-config:omega-config-base:${project["omega_config_version"]}")
     modImplementation("com.github.Draylar.omega-config:omega-config-base:${project["omega_config_version"]}")
 
+    implementation("com.github.LlamaLad7:MixinExtras:${project["mixinextras_version"]}")
+    include("com.github.LlamaLad7:MixinExtras:${project["mixinextras_version"]}")
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:${project["mixinextras_version"]}")
+
     // Compatibility
     modImplementation("com.terraformersmc:modmenu:${project["modmenu_version"]}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Test
-    modImplementation("com.ptsmods:devlogin:2.0")
+    modImplementation("com.ptsmods:devlogin:3.1")
 }
 
 tasks.processResources {
@@ -157,7 +161,7 @@ curseforge {
         mainArtifact(file(releaseFile), closureOf<CurseArtifact> {
             displayName = releaseName
             relations(closureOf<CurseRelation> {
-                embeddedLibrary("auto-config-updated-api")
+                embeddedLibrary("omega-config")
                 optionalDependency("modmenu")
                 requiredDependency("fabric-api")
                 requiredDependency("fabric-language-kotlin")

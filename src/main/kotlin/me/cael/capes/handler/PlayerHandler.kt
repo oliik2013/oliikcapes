@@ -7,6 +7,7 @@ import com.mojang.authlib.GameProfile
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import me.cael.capes.CapeType
 import me.cael.capes.Capes
+import me.cael.capes.Capes.identifier
 import me.cael.capes.handler.data.MCMData
 import me.cael.capes.handler.data.WynntilsData
 import net.minecraft.client.MinecraftClient
@@ -18,7 +19,7 @@ import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
-import java.util.concurrent.ForkJoinPool
+import java.util.concurrent.Executors
 
 class PlayerHandler(var profile: GameProfile) {
     val uuid: UUID = profile.id
@@ -28,26 +29,28 @@ class PlayerHandler(var profile: GameProfile) {
     var hasCape: Boolean = false
     var hasElytraTexture: Boolean = true
     var hasAnimatedCape: Boolean = false
+    var capeType: CapeType? = null
     init {
         instances[uuid] = this
     }
 
     companion object {
         val instances = HashMap<UUID, PlayerHandler>()
+        val capeExecutor = Executors.newFixedThreadPool(2)
 
         fun fromProfile(profile: GameProfile) = instances[profile.id] ?: PlayerHandler(profile)
 
         fun onLoadTexture(profile: GameProfile) {
             val playerHandler = fromProfile(profile)
-            if (profile == MinecraftClient.getInstance().player?.gameProfile) {
+            if (profile == MinecraftClient.getInstance().session.profile) {
                 playerHandler.hasCape = false
                 playerHandler.hasAnimatedCape = false
                 val config = Capes.CONFIG
-                ForkJoinPool.commonPool().submit {
+                capeExecutor.submit {
                     playerHandler.setCape(config.clientCapeType)
                 }
             } else {
-                ForkJoinPool.commonPool().submit {
+                capeExecutor.submit {
                     if (profile.id.toString() == "5f91fdfd-ea97-473c-bb77-c8a2a0ed3af9") { playerHandler.setStandardCape(connection("https://athena.wynntils.com/capes/user/${profile.id}")); return@submit }
                     for (capeType in CapeType.values()) {
                         if (playerHandler.setCape(capeType)) break
@@ -81,11 +84,12 @@ class PlayerHandler(var profile: GameProfile) {
     fun setCape(capeType: CapeType): Boolean {
         val capeURL = capeType.getURL(profile) ?: return false
         val connection = connection(capeURL)
+
         return when(capeType) {
             CapeType.WYNNTILS -> setWynntilsCape(connection)
             CapeType.MINECRAFTCAPES -> setMCMCape(connection)
             else -> setStandardCape(connection)
-        }
+        }.also { if (it) this.capeType = capeType}
     }
 
     fun setStandardCape(connection: HttpURLConnection): Boolean {
@@ -194,7 +198,5 @@ class PlayerHandler(var profile: GameProfile) {
         }
         return animatedCape
     }
-
-    fun identifier(id: String) = Identifier("capes", id)
 
 }

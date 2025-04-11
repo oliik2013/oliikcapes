@@ -5,11 +5,11 @@
   "mixins": [
   ],
   "client": [
+    "AccessorPlayerListEntry",
     "MixinCapeFeatureRenderer",
     "MixinElytraFeatureRenderer",
     "MixinPlayerListEntry",
-    "MixinSkinOptionsScreen",
-    "AccessorPlayerListEntry"
+    "MixinSkinOptionsScreen"
   ],
   "injectors": {
     "defaultRequire": 1
