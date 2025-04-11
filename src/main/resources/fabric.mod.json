@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "capes",
+  "version": "${version}",
+
+  "name": "Capes",
+  "description": "A Fabric mod that lets you use capes from Optifine, LabyMod, and the MinecraftCapes Mod.",
+  "authors": [
+    "Cael"
+  ],
+  "contact": {
+    "discord": "「 Lily 」#5284",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/capes",
+    "sources": "https://github.com/CaelTheColher/Capes",
+    "issues": "https://github.com/CaelTheColher/Capes/issues"
+  },
+
+  "license": "GNU Lesser General Public License v2.1",
+  "icon": "assets/capes/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "me.cael.capes.Capes"
+      }
+    ],
+    "modmenu": [
+      "me.cael.capes.compatibility.ModMenuCompatibility"
+    ]
+  },
+  "mixins": [
+    "capes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.8",
+    "fabric": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.18.x",
+    "omega-config": "*",
+    "java": ">=17"
+  }
+}
