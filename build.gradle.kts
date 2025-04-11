@@ -74,6 +74,7 @@ repositories {
     }
     mavenLocal()
     mavenCentral()
+    maven("https://maven.shedaniel.me/")
     gradlePluginPortal()
 }
 
