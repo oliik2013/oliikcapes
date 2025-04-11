@@ -15,41 +15,11 @@ class ToggleMenu(parent: Screen, gameOptions: GameOptions) : MainMenu(parent, ga
 
         val config = Capes.CONFIG
 
-        addDrawableChild(ButtonWidget.builder(CapeType.OPTIFINE.getToggleText(config.enableOptifine)) {
-            config.enableOptifine = !config.enableOptifine
+        addDrawableChild(ButtonWidget.builder(CapeType.OLIIK.getToggleText(config.enableOliik)) {
+            config.enableOliik = !config.enableOliik
             config.save()
-            it.message = CapeType.OPTIFINE.getToggleText(config.enableOptifine)
+            it.message = CapeType.OLIIK.getToggleText(config.enableOliik)
         }.position(width / 2 - 155, height / 7 + 24).size(150, 20).build())
-
-        addDrawableChild(ButtonWidget.builder(CapeType.LABYMOD.getToggleText(config.enableLabyMod)) {
-            config.enableLabyMod = !config.enableLabyMod
-            config.save()
-            it.message = CapeType.LABYMOD.getToggleText(config.enableLabyMod)
-        }.position(width / 2 - 155 + 160, height / 7 + 24).size(150, 20).build())
-
-        addDrawableChild(ButtonWidget.builder(CapeType.MINECRAFTCAPES.getToggleText(config.enableMinecraftCapesMod)) {
-            config.enableMinecraftCapesMod = !config.enableMinecraftCapesMod
-            config.save()
-            it.message = CapeType.MINECRAFTCAPES.getToggleText(config.enableMinecraftCapesMod)
-        }.position(width / 2 - 155, height / 7 + 2 * 24).size(150, 20).build())
-
-        addDrawableChild(ButtonWidget.builder(CapeType.WYNNTILS.getToggleText(config.enableWynntils)) {
-            config.enableWynntils = !config.enableWynntils
-            config.save()
-            it.message = CapeType.WYNNTILS.getToggleText(config.enableWynntils)
-        }.position(width / 2 - 155 + 160, height / 7 + 2 * 24).size(150, 20).build())
-
-        addDrawableChild(ButtonWidget.builder(CapeType.COSMETICA.getToggleText(config.enableCosmetica)) {
-            config.enableCosmetica = !config.enableCosmetica
-            config.save()
-            it.message = CapeType.COSMETICA.getToggleText(config.enableCosmetica)
-        }.position(width / 2 - 155, height / 7 + 3 * 24).size(150, 20).build())
-
-        addDrawableChild(ButtonWidget.builder(CapeType.CLOAKSPLUS.getToggleText(config.enableCloaksPlus)) {
-            config.enableCloaksPlus = !config.enableCloaksPlus
-            config.save()
-            it.message = CapeType.CLOAKSPLUS.getToggleText(config.enableCloaksPlus)
-        }.position(width / 2 - 155 + 160, height / 7 + 3 * 24).size(150, 20).build())
 
         addDrawableChild(ButtonWidget.builder(elytraMessage(config.enableElytraTexture)) {
             config.enableElytraTexture = !config.enableElytraTexture
