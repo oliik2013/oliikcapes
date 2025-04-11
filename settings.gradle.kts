@@ -4,6 +4,7 @@ pluginManagement {
     }
 
     repositories {
+        mavenCentral()
         gradlePluginPortal()
         maven {
             name = "Fabric"
