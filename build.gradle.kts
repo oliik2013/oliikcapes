@@ -17,7 +17,7 @@ buildscript {
 plugins {
     id("maven-publish")
     id("fabric-loom")
-    id("org.ajoberstar.grgit")
+    id("org.ajoberstar.grgit") version "4.1.1"
     id("org.jetbrains.kotlin.jvm")
     id("com.matthewprenger.cursegradle")
     id("com.modrinth.minotaur")
