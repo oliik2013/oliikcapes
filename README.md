@@ -1,4 +1,6 @@
 # oliikcapes
 custom minecraft capes
 
-this the installer source code for this service
+this the mod source code for this service
+
+based on [https://github.com/](https://github.com/CaelTheColher/Capes)
