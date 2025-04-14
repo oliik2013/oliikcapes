@@ -19,6 +19,6 @@ to use:
 
 support for animated capes is broken, will fix later.
 
-i will make an easy installer later
+i will make an easy installer and a mod later
 
 to add ur cape, make an pr, detailed instructions will be made later.
